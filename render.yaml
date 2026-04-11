@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: object-detection-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "true"
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
